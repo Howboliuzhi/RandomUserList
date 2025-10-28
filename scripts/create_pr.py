@@ -6,10 +6,10 @@ import string
 import os
 
 # ====== CẤU HÌNH ======
-PAT = os.environ["GITHUB_TOKEN"]   # ✅ token tự động
+PAT = os.environ["PAT"]                       # ✅ lấy từ secrets
 OWNER = os.environ["GITHUB_REPOSITORY"].split("/")[0]
 REPO = os.environ["GITHUB_REPOSITORY"].split("/")[1]
-COAUTHOR_USERNAME = os.environ["INPUT_USERNAME"]
+COAUTHOR_USERNAME = os.environ["INPUT_USERNAME"]  # ✅ lấy input username
 BASE_BRANCH = "main"                  # Nhánh gốc để tạo PR
 MERGE_METHOD = "squash"               # "merge" | "squash" | "rebase"
 DELETE_BRANCH_AFTER_MERGE = True      # Xóa nhánh sau khi merge
