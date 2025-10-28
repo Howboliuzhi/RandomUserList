@@ -3,6 +3,7 @@ import base64
 import datetime
 import random
 import string
+import os
 
 # ====== CẤU HÌNH ======
 PAT = os.environ["GITHUB_TOKEN"]   # ✅ token tự động
