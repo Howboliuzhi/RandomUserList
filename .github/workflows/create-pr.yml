@@ -1,19 +1,17 @@
-name: Auto PR & Merge
+name: Auto PR & Merge (with PAT)
 
 on:
   workflow_dispatch:
     inputs:
       username:
-        description: "GitHub Co-author"
+        description: "GitHub username of the Co-author"
         required: true
         type: string
 
 jobs:
   create-pr:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write      # Cho phép push, tạo nhánh, merge
-      pull-requests: write # Cho phép merge PR
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,8 +24,8 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Run auto PR script
+      - name: Run create_pr.py
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    # token mặc định của Actions
-          INPUT_USERNAME: ${{ github.event.inputs.username }}
+          PAT: ${{ secrets.PAT }}                             # ✅ lấy token từ secret
+          INPUT_USERNAME: ${{ github.event.inputs.username }} # ✅ truyền username
         run: python scripts/create_pr.py
